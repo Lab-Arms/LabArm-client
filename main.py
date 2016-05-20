@@ -1,6 +1,7 @@
 import sys
 import pygame
 from pygame.locals import *
+import res
 
 pygame.init()
 
@@ -13,31 +14,10 @@ clicked = False
 imagens = {}
 
 
-def load_images():
-    robo = pygame.image.load("img/pecas.bmp")
-    roborect = robo.get_rect()
-    roborect.x = 200
-    roborect.y = 30
-    imagens[0] = (robo, roborect)
-
-    horario = pygame.image.load("img/horario.png")
-    horariorect = horario.get_rect()
-    horariorect.x = 20
-    horariorect.y = 320
-    imagens[1] = (horario, horariorect)
-
-    antihorario = pygame.image.load("img/antihorario.png")
-    antihorariorect = antihorario.get_rect()
-    antihorariorect.x = 25 + antihorariorect.width
-    antihorariorect.y = 320
-    imagens[2] = (antihorario, antihorariorect)
-
-
 def draw():
     screen.fill(white)
     if not clicked:
         for k, v in imagens.items():
-            #import ipdb; ipdb.set_trace()
             i, r = v
             screen.blit(i, r)
     pygame.display.flip()
@@ -45,12 +25,15 @@ def draw():
 
 def main():
     global clicked
-    load_images()
+    global imagens
+    imagens = res.load_images()
     while 1:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == MOUSEBUTTONDOWN:
+                # event.pos retorna uma tupla
+                import ipdb; ipdb.set_trace()
                 clicked = True
             if event.type == MOUSEBUTTONUP:
                 clicked = False
