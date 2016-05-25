@@ -3,17 +3,17 @@
 import sys
 import pygame
 from pygame.locals import *
-from res import *
+from images import *
+from constants import *
+from controls import *
 
 pygame.init()
 
 size = width, height = 1200, 700
 white = 254, 254, 254
+clicked = None
 
 screen = pygame.display.set_mode(size)
-
-clicked = False
-imagens = {}
 
 
 def draw():
