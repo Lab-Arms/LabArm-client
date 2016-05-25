@@ -1,7 +1,9 @@
+#!/usr/bin/env python
+
 import sys
 import pygame
 from pygame.locals import *
-import res
+from res import *
 
 pygame.init()
 
@@ -26,17 +28,19 @@ def draw():
 def main():
     global clicked
     global imagens
-    imagens = res.load_images()
-    while 1:
+
+    imagens = load_images()
+
+    while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == MOUSEBUTTONDOWN:
-                # event.pos retorna uma tupla
-                import ipdb; ipdb.set_trace()
-                clicked = True
+                clicked = button_clicked(event.pos)
+                if clicked:
+                    print(clicked)
             if event.type == MOUSEBUTTONUP:
-                clicked = False
+                clicked = None
 
         draw()
 
