@@ -63,3 +63,12 @@ def button_clicked(pos):
         y > MOTOR5ANTIHORARIO_Y and y < MOTOR5ANTIHORARIO_Y + BUTTON_HEIGHT
     ):
         return "9"
+
+    elif (
+        x > CAMERA_RECT_X and x < CAMERA_RECT_X + CAMERA_RECT_WIDTH and
+        y > CAMERA_RECT_Y and y < CAMERA_RECT_Y + CAMERA_RECT_HEIGHT
+    ):
+        return "10"
+
+    else:
+        return "-1"

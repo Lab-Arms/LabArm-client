@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-
 import sys
+import os
 import pygame
 import pygame.camera
+import socket
 from pygame.locals import *
 from images import *
 from controls import *
@@ -21,48 +22,85 @@ white = 254, 254, 254
 gray = 200, 200, 200
 black = 0, 0, 0
 
-clicked = None
+clicked_button = None
 
 screen = pygame.display.set_mode(size)
 cam_rect = pygame.Rect(450, 250, 732, 450)
 font = pygame.font.SysFont("timesnewroman", 54)
-text1 = font.render("Desconectado do servidor.", True, black)
-text2 = font.render("Deseja conectar?", True, black)
+disc_text = font.render("Desconectado do servidor.", True, black)
+conn_text = font.render("Deseja conectar?", True, black)
+succ_text = font.render("Conectado!", True, black)
+connected = None
 
 
-def draw():
+def draw(sock):
     screen.fill(white)
-    if clicked:
-        _, rectangle = imagens[int(clicked) + 1]
+    if (
+        clicked_button is not None and
+        clicked_button in range(0, NUMBER_MOVEMENTS)
+    ):
+        _, rectangle = imagens[clicked_button + 1]
         screen.fill(gray, rectangle)
     for k, v in imagens.items():
         surface, rectangle = v
         screen.blit(surface, rectangle)
-
-    pygame.draw.rect(screen, black, cam_rect, 3)
-    screen.blit(text1, (cam_rect.centerx - text1.get_width() / 2, cam_rect.centery-25 - text1.get_height() / 2, ))
-    screen.blit(text2, (cam_rect.centerx - text2.get_width() / 2, cam_rect.centery+25 - text2.get_height() / 2, ))
+        pygame.draw.rect(screen, black, cam_rect, 3)
+    if not sock or sock == -1 or sock._closed:
+        screen.blit(
+            disc_text, (
+                cam_rect.centerx - disc_text.get_width() / 2,
+                cam_rect.centery - 25 - disc_text.get_height() / 2
+            )
+        )
+        screen.blit(
+            conn_text, (
+                cam_rect.centerx - conn_text.get_width() / 2,
+                cam_rect.centery + 25 - conn_text.get_height() / 2
+            )
+        )
+    else:
+        screen.blit(
+            succ_text, (
+                cam_rect.centerx - succ_text.get_width() / 2,
+                cam_rect.centery - succ_text.get_height() / 2
+            )
+        )
     pygame.display.flip()
 
 
+def connect_to_server():
+    try:
+        address = host, port = '127.0.0.1', 4004
+        sock = socket.create_connection(address, timeout=10)
+        sock.settimeout(None)
+    except ConnectionRefusedError:
+        sock = -1
+    return sock
+
+
 def main():
-    global clicked
+    global clicked_button
     global imagens
+    sock = None
 
     imagens = load_images()
 
     while True:
+        # Handling events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == MOUSEBUTTONDOWN:
-                clicked = button_clicked(event.pos)
-                if clicked:
-                    print(clicked)
+                clicked_button = int(button_clicked(event.pos))
+                if clicked_button in range(0, NUMBER_MOVEMENTS):
+                    print(clicked_button)
+                elif clicked_button == NUMBER_MOVEMENTS:
+                    sock = connect_to_server()
             if event.type == MOUSEBUTTONUP:
-                clicked = None
+                clicked_button = None
 
-        draw()
+        # Drawing objects
+        draw(sock)
 
 if __name__ == '__main__':
     main()
