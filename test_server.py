@@ -8,12 +8,16 @@ def main():
     sock.bind(address)
     sock.listen(5)
 
-    print("server started")
+    print("Server started...")
 
     while True:
         c, addr = sock.accept()
         print("Client connected. IP: ", str(addr))
-
+        while c:
+            userresponse = c.recv(1024)
+            userresponse = userresponse.decode('UTF-8')
+            if (userresponse != ''):
+                print("Movimento: ", userresponse)
 
 if __name__ == '__main__':
     main()

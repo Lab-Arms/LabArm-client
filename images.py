@@ -5,7 +5,7 @@ from constants import *
 def load_images():
     imagens = {}
 
-    robo_surface = pygame.image.load("img/pecas.bmp")
+    robo_surface = pygame.image.load("img/arm.png")
     horario_surface = pygame.image.load("img/horario.png")
     antihorario_surface = pygame.image.load("img/antihorario.png")
 

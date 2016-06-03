@@ -26,10 +26,13 @@ clicked_button = None
 
 screen = pygame.display.set_mode(size)
 cam_rect = pygame.Rect(450, 250, 732, 450)
-font = pygame.font.SysFont("timesnewroman", 54)
-disc_text = font.render("Desconectado do servidor.", True, black)
-conn_text = font.render("Deseja conectar?", True, black)
-succ_text = font.render("Conectado!", True, black)
+disc_rect = pygame.Rect(1000, 20, 170, 35)
+font1 = pygame.font.SysFont("timesnewroman", 54)
+font2 = pygame.font.SysFont("timesnewroman", 30)
+disc1_text = font1.render("Desconectado do servidor.", True, black)
+conn_text = font1.render("Deseja conectar?", True, black)
+succ_text = font1.render("Conectado!", True, black)
+disc2_text = font2.render("Desconectar", True, black)
 connected = None
 
 
@@ -47,9 +50,9 @@ def draw(sock):
         pygame.draw.rect(screen, black, cam_rect, 3)
     if not sock or sock == -1 or sock._closed:
         screen.blit(
-            disc_text, (
-                cam_rect.centerx - disc_text.get_width() / 2,
-                cam_rect.centery - 25 - disc_text.get_height() / 2
+            disc1_text, (
+                cam_rect.centerx - disc1_text.get_width() / 2,
+                cam_rect.centery - 25 - disc1_text.get_height() / 2
             )
         )
         screen.blit(
@@ -65,7 +68,18 @@ def draw(sock):
                 cam_rect.centery - succ_text.get_height() / 2
             )
         )
+        screen.blit(
+            disc2_text, (
+                disc_rect.centerx - disc2_text.get_width() / 2,
+                disc_rect.centery - disc2_text.get_height() / 2
+            )
+        )
+        pygame.draw.rect(screen, black, disc_rect, 2)
     pygame.display.flip()
+
+
+def disconnect_from_server():
+    pass
 
 
 def connect_to_server():
@@ -89,12 +103,13 @@ def main():
         # Handling events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                sock.close()
                 sys.exit()
             if event.type == MOUSEBUTTONDOWN:
                 clicked_button = int(button_clicked(event.pos))
                 if clicked_button in range(0, NUMBER_MOVEMENTS):
-                    print(clicked_button)
-                elif clicked_button == NUMBER_MOVEMENTS:
+                    sock.send(bytes(str(clicked_button), 'UTF-8'))
+                elif clicked_button == NUMBER_MOVEMENTS and not sock:
                     sock = connect_to_server()
             if event.type == MOUSEBUTTONUP:
                 clicked_button = None
