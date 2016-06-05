@@ -54,13 +54,13 @@ def button_clicked(pos):
 
     # Motor 5 buttons
     elif (
-        x > MOTOR5HORARIO_X and x < MOTOR5HORARIO_X + BUTTON_WIDTH and
-        y > MOTOR5HORARIO_Y and y < MOTOR5HORARIO_Y + BUTTON_HEIGHT
+        x > MOTOR5ABRIR_X and x < MOTOR5ABRIR_X + BUTTON_WIDTH and
+        y > MOTOR5ABRIR_Y and y < MOTOR5ABRIR_Y + BUTTON_HEIGHT
     ):
         return "8"
     elif (
-        x > MOTOR5ANTIHORARIO_X and x < MOTOR5ANTIHORARIO_X + BUTTON_WIDTH and
-        y > MOTOR5ANTIHORARIO_Y and y < MOTOR5ANTIHORARIO_Y + BUTTON_HEIGHT
+        x > MOTOR5FECHAR_X and x < MOTOR5FECHAR_X + BUTTON_WIDTH and
+        y > MOTOR5FECHAR_Y and y < MOTOR5FECHAR_Y + BUTTON_HEIGHT
     ):
         return "9"
 

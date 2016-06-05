@@ -8,6 +8,8 @@ def load_images():
     robo_surface = pygame.image.load("img/arm.png")
     horario_surface = pygame.image.load("img/horario.png")
     antihorario_surface = pygame.image.load("img/antihorario.png")
+    abrir_surface = pygame.image.load("img/abrir.png")
+    fechar_surface = pygame.image.load("img/fechar.png")
 
     robo = robo_surface.get_rect()
     robo.x = ROBO_X
@@ -55,13 +57,13 @@ def load_images():
     imagens[8] = (antihorario_surface, motor4antihorario)
 
     # setas motor 5
-    motor5horario = horario_surface.get_rect()
-    motor5horario.x = MOTOR5HORARIO_X
-    motor5horario.y = MOTOR5HORARIO_Y
-    imagens[9] = (horario_surface, motor5horario)
-    motor5antihorario = antihorario_surface.get_rect()
-    motor5antihorario.x = MOTOR5ANTIHORARIO_X
-    motor5antihorario.y = MOTOR5ANTIHORARIO_Y
-    imagens[10] = (antihorario_surface, motor5antihorario)
+    motor5abrir = abrir_surface.get_rect()
+    motor5abrir.x = MOTOR5ABRIR_X
+    motor5abrir.y = MOTOR5ABRIR_Y
+    imagens[9] = (abrir_surface, motor5abrir)
+    motor5fechar = fechar_surface.get_rect()
+    motor5fechar.x = MOTOR5FECHAR_X
+    motor5fechar.y = MOTOR5FECHAR_Y
+    imagens[10] = (fechar_surface, motor5fechar)
 
     return imagens

@@ -11,10 +11,10 @@ def main():
     print("Server started...")
 
     while True:
-        c, addr = sock.accept()
+        conn, addr = sock.accept()
         print("Client connected. IP: ", str(addr))
-        while c:
-            userresponse = c.recv(1024)
+        while conn:
+            userresponse = conn.recv(1024)
             userresponse = userresponse.decode('UTF-8')
             if (userresponse != ''):
                 print("Movimento: ", userresponse)

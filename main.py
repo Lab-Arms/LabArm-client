@@ -108,7 +108,8 @@ def main():
             if event.type == MOUSEBUTTONDOWN:
                 clicked_button = int(button_clicked(event.pos))
                 if clicked_button in range(0, NUMBER_MOVEMENTS):
-                    sock.send(bytes(str(clicked_button), 'UTF-8'))
+                    if sock:
+                        sock.send(bytes(str(clicked_button), 'UTF-8'))
                 elif clicked_button == NUMBER_MOVEMENTS and not sock:
                     sock = connect_to_server()
             if event.type == MOUSEBUTTONUP:
