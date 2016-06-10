@@ -13,7 +13,6 @@ from controls import MouseControls
 
 class LabArm():
     def __init__(self):
-        import ipdb; ipdb.set_trace()
         pygame.init()
 
         self.imgs = Images()
@@ -24,29 +23,35 @@ class LabArm():
 
         self.clicked_button = None
         self.images = None
+        self.sock = None
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
 
     def main(self):
-        self.imagens = imgs.load_images()
-
+        self.images = self.imgs.get_images()
         while True:
             # Handling events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    sock.close()
+                    self.sock.close()
                     sys.exit()
                 if event.type == MOUSEBUTTONDOWN:
-                    clicked_button = int(button_clicked(event.pos))
-                    if clicked_button in range(0, NUMBER_MOVEMENTS):
-                        if sock:
-                            sock.send(bytes(str(clicked_button), 'UTF-8'))
-                    elif clicked_button == NUMBER_MOVEMENTS and not sock:
-                        sock = netw.connect_to_server()
+                    self.clicked_button = int(self.button_clicked(event.pos))
+                    if self.clicked_button in range(0, NUMBER_MOVEMENTS):
+                        if self.sock:
+                            self.sock.send(
+                                bytes(str(self.clicked_button), 'UTF-8'))
+                    elif (
+                        self.clicked_button == NUMBER_MOVEMENTS and
+                        not self.sock
+                    ):
+                        self.sock = self.netw.connect_to_server()
                 if event.type == MOUSEBUTTONUP:
-                    clicked_button = None
+                    self.clicked_button = None
 
             # Drawing objects
-            draw(sock)
+            self.canv.draw(self.screen, self.images, self.clicked_button)
+            self.fonts.draw(self.screen, self.sock)
+            pygame.display.flip()
 
 if __name__ == '__main__':
     labarm = LabArm()
