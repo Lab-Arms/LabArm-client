@@ -5,7 +5,6 @@ from canvas import Canvas
 
 class Fonts(Canvas):
     def __init__(self):
-        import ipdb; ipdb.set_trace()
         canv = Canvas()
         self.cam = canv.get_cam_rect()
         self.disc = canv.get_disc_rect()

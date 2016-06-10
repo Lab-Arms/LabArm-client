@@ -17,35 +17,31 @@ class Images():
         self.robo.y = ROBO_Y
         self.imagens[0] = (self.robo_surface, self.robo)
 
-        # setas motor 1
+        # botão motor 1
         self.motor1horario = self.horario_surface.get_rect()
-        self.motor1horario.x = MOTOR1HORARIO_X
-        self.motor1horario.y = MOTOR1HORARIO_Y
+        self.motor1horario.x = MOTOR1_X
+        self.motor1horario.y = MOTOR1_Y
         self.imagens[1] = (self.horario_surface, self.motor1horario)
 
-        # setas motor 2
+        # botão motor 2
         self.motor2horario = self.horario_surface.get_rect()
-        self.motor2horario.x = MOTOR2HORARIO_X
-        self.motor2horario.y = MOTOR2HORARIO_Y
+        self.motor2horario.x = MOTOR2_X
+        self.motor2horario.y = MOTOR2_Y
         self.imagens[2] = (self.horario_surface, self.motor2horario)
 
-        # setas motor 3
+        # botão motor 3
         self.motor3horario = self.horario_surface.get_rect()
-        self.motor3horario.x = MOTOR3HORARIO_X
-        self.motor3horario.y = MOTOR3HORARIO_Y
+        self.motor3horario.x = MOTOR3_X
+        self.motor3horario.y = MOTOR3_Y
         self.imagens[3] = (self.horario_surface, self.motor3horario)
 
-        # setas motor 4
+        # botão motor 4
         self.motor4horario = self.horario_surface.get_rect()
-        self.motor4horario.x = MOTOR4HORARIO_X
-        self.motor4horario.y = MOTOR4HORARIO_Y
+        self.motor4horario.x = MOTOR4_X
+        self.motor4horario.y = MOTOR4_Y
         self.imagens[4] = (self.horario_surface, self.motor4horario)
-        self.motor4antihorario = self.antihorario_surface.get_rect()
-        self.motor4antihorario.x = MOTOR4ANTIHORARIO_X
-        self.motor4antihorario.y = MOTOR4ANTIHORARIO_Y
-        self.imagens[5] = (self.antihorario_surface, self.motor4antihorario)
 
-        # setas motor 5
+        # botão motor 5
         self.motor5abrir = self.abrir_surface.get_rect()
         self.motor5abrir.x = MOTOR5ABRIR_X
         self.motor5abrir.y = MOTOR5ABRIR_Y
