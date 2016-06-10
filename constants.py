@@ -1,5 +1,6 @@
 ESTADO_MOTORES = ('a', 'b', 'c', 'd', 'ea', 'ef')
 
+RANGE_NUMERIC_KEY = (48, 57)
 SCREEN_SIZE = (1200, 715)
 
 BLACK = (0, 0, 0)

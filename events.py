@@ -9,6 +9,8 @@ from globalvars import *
 class PCEvents(PCControls):
     def __init__(self):
         self.ctrls = PCControls()
+        self.angle_value = ''
+        self.angle_dict = {}
 
     def handle(self, netw):
         for event in pygame.event.get():
@@ -16,12 +18,20 @@ class PCEvents(PCControls):
                 if get_sock():
                     get_sock().close()
                 sys.exit()
-            if event.type == MOUSEBUTTONDOWN:
+
+            if not get_clikd_btn() and event.type == MOUSEBUTTONDOWN:
                 set_clikd_btn(self.ctrls.button_clicked(event.pos))
-                if get_clikd_btn() in ESTADO_MOTORES:
-                    if get_sock():
-                        get_sock().send(bytes(get_clikd_btn(), 'UTF-8'))
-                elif (get_clikd_btn() == 'cam' and not get_sock()):
-                    set_sock(netw.connect_to_server())
-            if event.type == MOUSEBUTTONUP:
-                set_clikd_btn(None)
+
+            if event.type == KEYDOWN:
+                if event.key in range(K_0, K_9 + 1):
+                    self.angle_value += str(event.key - K_0)
+                if get_clikd_btn() and event.key == K_RETURN:
+                    self.angle_dict[get_clikd_btn()] = self.angle_value
+                    self.angle_value = ''
+                    set_clikd_btn(None)
+                if event.key == K_ESCAPE:
+                    # TODO: Mudar evento para mouse click
+                    pass
+
+            if (get_clikd_btn() == 'cam' and not get_sock()):
+                 set_sock(netw.connect_to_server())
