@@ -1,5 +1,6 @@
 ESTADO_MOTORES = ('a', 'b', 'c', 'd', 'ea', 'ef')
 
+RANGE_NUMERIC_KEY = (48, 57)
 SCREEN_SIZE = (1200, 715)
 
 BLACK = (0, 0, 0)
@@ -14,16 +15,12 @@ ROBO_Y = (30)
 
 MOTOR1_X = (93)
 MOTOR1_Y = (622)
-
 MOTOR2_X = (20)
 MOTOR2_Y = (320)
-
 MOTOR3_X = (75)
 MOTOR3_Y = (15)
-
 MOTOR4_X = (485)
 MOTOR4_Y = (15)
-
 MOTOR5ABRIR_X = (740)
 MOTOR5ABRIR_Y = (150)
 MOTOR5FECHAR_X = (855)

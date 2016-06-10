@@ -1,22 +1,24 @@
 import pygame
 from constants import *
+from images import Images
+from globalvars import *
 
 
 class Canvas():
     def __init__(self):
+        self.imgs = Images().get_images()
         self.cam_rect = pygame.Rect(450, 250, 732, 450)
         self.disc_rect = pygame.Rect(1000, 20, 170, 35)
 
-    def draw(self, screen, imgs, clikd_btn):
+    def draw(self, screen):
         screen.fill(WHITE)
         if (
-            clikd_btn is not None and
-            clikd_btn in range(0, NUMBER_MOVEMENTS)
+            get_clikd_btn() is not None and
+            get_clikd_btn() in ESTADO_MOTORES
         ):
-            # XXX: O Índice está errado
-            _, rectangle = imgs[clikd_btn + 1]
-            screen.fill(gray, rectangle)
-        for k, v in imgs.items():
+            _, rectangle = self.imgs[get_clikd_btn()]
+            screen.fill(GRAY, rectangle)
+        for k, v in self.imgs.items():
             surface, rectangle = v
             screen.blit(surface, rectangle)
             pygame.draw.rect(screen, BLACK, self.cam_rect, 3)
