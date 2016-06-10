@@ -1,6 +1,7 @@
 import pygame
 from constants import BLACK
 from canvas import Canvas
+from globalvars import *
 
 
 class Fonts(Canvas):
@@ -17,8 +18,8 @@ class Fonts(Canvas):
         self.succ_text = self.font1.render("Conectado!", True, BLACK)
         self.disc2_text = self.font2.render("Desconectar", True, BLACK)
 
-    def draw(self, screen, sock):
-        if not sock or sock == -1 or sock._closed:
+    def draw(self, screen):
+        if not get_sock() or get_sock() == -1 or get_sock()._closed:
             screen.blit(
                 self.disc1_text, (
                     self.cam.centerx - self.disc1_text.get_width() / 2,
