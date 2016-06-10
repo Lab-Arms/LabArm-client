@@ -1,0 +1,6 @@
+motor           min     max     inicial
+a (base)        22      180     90
+b (elo1)        130     180     170
+c (elo2)      
+d (garra)       70      160     90
+e (rotacao)     10      170     90
