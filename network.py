@@ -1,5 +1,5 @@
 import socket
-
+from globalvars import *
 
 class Network():
     address = host, port = '127.0.0.1', 4004
@@ -13,4 +13,5 @@ class Network():
         return sock
 
     def disconnect_from_server(self):
-        pass
+        sock = get_sock()
+        sock.close()

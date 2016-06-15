@@ -49,6 +49,12 @@ class PCControls(Controls):
             y > CAMERA_RECT_Y and y < CAMERA_RECT_Y + CAMERA_RECT_HEIGHT
         ):
             return "cam"
+        
+        elif (
+            x > DISCONNECT_RECT_X and x < DISCONNECT_RECT_X + DISCONNECT_RECT_WIDTH and
+            y > DISCONNECT_RECT_Y and y < DISCONNECT_RECT_Y + DISCONNECT_RECT_HEIGHT
+        ):
+            return "disconnect"
 
         else:
             return None

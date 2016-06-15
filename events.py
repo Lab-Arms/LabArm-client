@@ -50,3 +50,10 @@ class PCEvents(PCControls):
             if (get_clikd_btn() == 'cam' and not get_sock()):
                 set_sock(netw.connect_to_server())
                 set_clikd_btn(None)
+
+
+            if (get_clikd_btn() == 'disconnect' and get_sock()):
+                set_sock(netw.disconnect_from_server())
+                set_clikd_btn(None)
+                 
+    
