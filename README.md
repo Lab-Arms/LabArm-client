@@ -80,6 +80,10 @@ pip install hg+http://bitbucket.org/pygame/pygame
 
 clone o projeto, entre na pasta do projeto clonado e ative seu ambiente
 
+git clone https://github.com/Lab-Arms/LabArm-client.git
+
+cd LabArm-client
+
 workon pi2
 
 execute o projeto
