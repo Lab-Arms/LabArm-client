@@ -3,7 +3,7 @@ from constants import BLACK
 from canvas import Canvas
 from globalvars import *
 
-from camera import VideoCamera
+#from camera import VideoCamera
 
 
 class Fonts(Canvas):
