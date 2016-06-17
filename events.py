@@ -35,7 +35,7 @@ class PCEvents(PCControls):
                     self.angle_value = ''
                     set_clikd_btn(None)
                 if event.key == K_ESCAPE:
-                    if self.changed_value:
+                    if self.changed_value and get_sock():
                         self.final_string = ''
                         # TODO: Mudar evento para mouse click
                         ordered = collections.OrderedDict(
