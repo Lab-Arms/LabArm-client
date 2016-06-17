@@ -28,8 +28,11 @@ class PCEvents(PCControls):
 
             if event.type == KEYDOWN:
                 if event.key in range(K_0, K_9 + 1):
-                    self.changed_value = True
-                    self.angle_value += str(event.key - K_0)
+                    if len(self.angle_value) < 3:
+                        self.changed_value = True
+                        self.angle_value += str(event.key - K_0)
+                    else:
+                        print("valor para ângulo maior que 3, informe valor menor que 3")
                 if get_clikd_btn() and event.key == K_RETURN:
                     self.angle_dict[get_clikd_btn()] = self.angle_value
                     self.angle_value = ''
