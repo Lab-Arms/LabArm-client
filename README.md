@@ -18,84 +18,83 @@ Tahigo Alves - Energia
 
 Instalação e execução do projeto
 
-primeiro instale o python-dev
+Primeiro instale o python-dev:
 
 sudo apt-get install python-dev
 sudo apt-get autoremove
 sudo apt-get update
 
-instale o setuptools
+Instale o setuptools:
 
 sudo apt-get install python-setuptools
 
-instale o virtualenv
+Instale o virtualenv:
 
 sudo apt-get install python-virtualenv
 
-instale o pip
+Instale o pip:
 
 sudo easy_install pip
 
-com o pip instalado, instale o wrapper
+Com o pip instalado, instale o wrapper:
 
 pip install virtualenvwrapper
 
-Atualize o pip
+Atualize o pip:
 
 pip install --upgrade pip
 
-Abra o bash com editor de sua escolha
+Abra o bash com editor de sua escolha (abrimos com gedit):
 
 gedit ~/.bashrc
 
-inclua a seguinte linha no final do arquivo e salve:
+Inclua a seguinte linha no final do arquivo e salve:
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /home/fagner/.local/bin/virtualenvwrapper.sh
 
-execute
+Execute os comandos:
 
 source ~/.bashrc
-
 sudo updatedb
-
 locate virtualenvwrapper.sh
 
-crie o ambiente, nesse caso o nome do ambiente é pi2
+Crie o ambiente, nesse caso o nome do ambiente é pi2:
 
 mkvirtualenv -p /usr/bin/python3 pi2
 
-execute
+Execute o comando:
 
 ls ~/.virtualenvs/
 
-instale as seguintes dependências
+Instale as seguintes dependências:
 
 sudo apt-get install mercurial python3-dev python3-numpy libav-tools     libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libsmpeg-dev     libsdl1.2-dev  libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev libfreetype6-dev
 
-com o pip instale o pygame
-
-pip install hg+http://bitbucket.org/pygame/pygame
-
-clone o projeto, entre na pasta do projeto clonado e ative seu ambiente
-
-git clone https://github.com/Lab-Arms/LabArm-client.git
-
-cd LabArm-client
+Acesse o ambiente criado:
 
 workon pi2
 
-execute o projeto
+Com o pip instale o pygame:
+
+pip install hg+http://bitbucket.org/pygame/pygame
+
+Clone o projeto, entre na pasta do projeto clonado e ative seu ambiente:
+
+git clone https://github.com/Lab-Arms/LabArm-client.git
+cd LabArm-client
+
+Execute o projeto:
 
 ./test_server.py
 
-entre em outro terminal, entre na pasta do projeto, ative o ambiente da mesma forma e execute
+Entre em outro terminal, entre na pasta do projeto, ative o ambiente da mesma forma e execute:
 
 ./main.py
 
 Assim já pode trabalhar com o projeto
 
-para sair do ambiente execute no terminal
+Para sair do ambiente execute no terminal:
 
 deactivate
