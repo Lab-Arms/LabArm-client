@@ -4,6 +4,7 @@ import pygame
 from pygame.locals import *
 from controls import PCControls
 from globalvars import *
+from network import Network
 
 
 class PCEvents(PCControls):
