@@ -1,5 +1,5 @@
 import pygame
-from constants import CAMERA_RECT_HEIGHT, CAMERA_RECT_WIDTH
+from constants import CAMERA_SIZE
 
 global g_clikd_btn
 global g_sock
@@ -7,7 +7,7 @@ global g_camsurface
 
 g_clikd_btn = None
 g_sock = None
-g_camsurface = pygame.Surface((CAMERA_RECT_WIDTH, CAMERA_RECT_HEIGHT))
+g_camsurface = pygame.Surface(CAMERA_SIZE)
 
 
 def get_clikd_btn():

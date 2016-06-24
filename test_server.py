@@ -46,7 +46,6 @@ def main():
     host = '127.0.0.1'
     tcp_port = 4004
     address = host, tcp_port
-
     sock = socket.socket()
     sock.bind(address)
     sock.listen(5)

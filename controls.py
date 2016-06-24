@@ -34,27 +34,27 @@ class PCControls(Controls):
         ):
             return "d"
         elif (
-            x > MOTOR5ABRIR_X and x < MOTOR5ABRIR_X + BUTTON_WIDTH and
-            y > MOTOR5ABRIR_Y and y < MOTOR5ABRIR_Y + BUTTON_HEIGHT
+            x > ABRIR_X and x < ABRIR_X + BUTTON_WIDTH and
+            y > ABRIR_Y and y < ABRIR_Y + BUTTON_HEIGHT
         ):
             return "ea"
         elif (
-            x > MOTOR5FECHAR_X and x < MOTOR5FECHAR_X + BUTTON_WIDTH and
-            y > MOTOR5FECHAR_Y and y < MOTOR5FECHAR_Y + BUTTON_HEIGHT
+            x > FECHAR_X and x < FECHAR_X + BUTTON_WIDTH and
+            y > FECHAR_Y and y < FECHAR_Y + BUTTON_HEIGHT
         ):
             return "ef"
 
         elif (
-            x > CAMERA_RECT_X and x < CAMERA_RECT_X + CAMERA_RECT_WIDTH and
-            y > CAMERA_RECT_Y and y < CAMERA_RECT_Y + CAMERA_RECT_HEIGHT
+            x > CAMERA_X and x < CAMERA_X + CAMERA_WIDTH and
+            y > CAMERA_Y and y < CAMERA_Y + CAMERA_HEIGHT
         ):
             return "cam"
-        
+
         elif (
-            x > DISCONNECT_RECT_X and x < DISCONNECT_RECT_X + DISCONNECT_RECT_WIDTH and
-            y > DISCONNECT_RECT_Y and y < DISCONNECT_RECT_Y + DISCONNECT_RECT_HEIGHT
+            x > DISC_CONN_X and x < DISC_CONN_X + DISC_CONN_WIDTH and
+            y > DISC_CONN_Y and y < DISC_CONN_Y + DISC_CONN_HEIGHT
         ):
-            return "disconnect"
+            return "dc"
 
         else:
             return None
