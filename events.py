@@ -59,4 +59,4 @@ class PCEvents(PCControls):
                 set_sock(netw.disconnect_from_server())
                 set_clikd_btn(None)
                  
-    
+#    if value in range(0, 180):
