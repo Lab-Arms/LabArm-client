@@ -17,7 +17,7 @@ class PCEvents(PCControls):
         self.final_string = ''
         self.changed_value = False
 
-    def handle(self, netw):
+    def handle(self, screen, netw):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 if get_sock():
@@ -52,7 +52,7 @@ class PCEvents(PCControls):
                         get_sock().send(bytes(self.final_string, 'UTF-8'))
 
             if (get_clikd_btn() == 'cam' and not get_sock()):
-                set_sock(netw.connect_to_server())
+                set_sock(netw.connect_to_server(screen))
                 set_clikd_btn(None)
 
 

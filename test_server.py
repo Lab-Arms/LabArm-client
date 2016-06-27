@@ -2,32 +2,30 @@
 import socket
 import cv2
 import threading
+import numpy
+import pygame
 
+cap = cv2.VideoCapture(0)
+cap.set(3,640)
+cap.set(4,480)
+color=False
 
 def updsendpic(nothing, addr):
-    cap = cv2.VideoCapture(0)
-    udphost = addr[0]
-    udpport = addr[1] + 1
-    udpserver = (udphost, udpport)
-    udpclient = (udphost, udpport + 1)
-    import ipdb; ipdb.set_trace()
-    
-    udpsock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    udpsock.bind(udpserver)
-    connected = True
-    udpsock.sendto('conectado', udpclient)
-    data, addr = udpsock.recvfrom(1024)
-    if data == 'eh nois':
-        pass
-    while connected:
+    while(True):
         ret, frame = cap.read()
-        all_bytes = frame.tobytes()
-        to_send = all_bytes[:987]
-        all_bytes = all_bytes[987:]
-        while all_bytes != '':
-            udpsock.sendto(to_send, udpclient)
-            to_send = all_bytes[:987]
-            all_bytes = all_bytes[987:]
+
+        #import ipdb; ipdb.set_trace()
+
+        udpsock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+        if not color:
+            frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+        frame=numpy.rot90(frame)
+        fr=frame.tostring()
+
+        for i in xrange(20):
+             udpsock.sendto(bytes(fr[i*46080:(i+1)*46080]), addr)
+
 
     cap.release()
 
@@ -35,7 +33,9 @@ def updsendpic(nothing, addr):
 def main():
     host = '127.0.0.1'
     port = 4004
+    udp_port = 5005
     address = host, port
+    udp_address = host, udp_port
     
     sock = socket.socket()
     #import ipdb; ipdb.set_trace()
@@ -47,7 +47,7 @@ def main():
 
     while True:
         conn, addr = sock.accept()
-        t = threading.Thread(target=updsendpic, args=('abc', address))
+        t = threading.Thread(target=updsendpic, args=('abc', udp_address))
         t.start()
         
         print("Client connected. IP: ", str(addr))
