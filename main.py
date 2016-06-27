@@ -4,6 +4,7 @@ from pygame.locals import *
 
 from constants import SCREEN_SIZE
 from canvas import Canvas
+from constants import *
 from events import PCEvents
 from fonts import Fonts
 from images import Images
