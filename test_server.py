@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import socket
-import cv2
-import threading
-import numpy
 import sys
+import threading
+import time
+import cv2
+from pygame.locals import *
 
 cap = cv2.VideoCapture(0)
 cap.set(3, 640)
@@ -11,19 +12,27 @@ cap.set(4, 480)
 color = False
 
 
-def sendpic(name):
+def sendpic(name, abc):
     address = host, port = "127.0.0.1", 4005
-    sock = socket.socket()
-    sock.bind(address)
-    sock.listen(5)
+    time.sleep(1)
+    try:
+        tcp_sock = socket.create_connection(address, timeout=10)
+        tcp_sock.settimeout(None)
 
-    while(True):
-        ret, frame = cap.read()
-        if not color:
+        while True:
+            ret, frame = cap.read()
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame = numpy.rot90(frame)
-        fr = frame.tostring()
-    sock.close()
+            fr = frame.tostring()
+            tcp_sock.send(bytes(str(sys.getsizeof(fr)), 'UTF-8'))
+            confirm = tcp_sock.recv(1024)
+            tosend = ''
+            while fr != '':
+                tosend = fr[:46031]
+                fr = fr[46031:]
+                tcp_sock.send(bytes(tosend))
+    except ConnectionRefusedError:
+        tcp_sock = -1
+    tcp_sock.close()
     cap.release()
 
 
@@ -39,9 +48,9 @@ def main():
     print("Server started...")
     while True:
         conn, addr = sock.accept()
-        # t = threading.Thread(
-        #     target=sendpic, args=('SendPicThread'))
-        # t.start()
+        t = threading.Thread(
+            target=sendpic, args=('SendPicture', 'abc'))
+        t.start()
         print("Client connected. IP: ", str(addr))
 
         while conn:
