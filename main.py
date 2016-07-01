@@ -27,6 +27,7 @@ class LabArm():
             self.events.handle(self.screen, self.netw)
             self.canvas.draw(self.screen)
             self.fonts.draw(self.screen)
+            self.netw.draw(self.screen)
             pygame.display.flip()
 
 if __name__ == '__main__':

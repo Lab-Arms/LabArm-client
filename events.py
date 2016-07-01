@@ -4,7 +4,6 @@ import pygame
 from pygame.locals import *
 from controls import PCControls
 from globalvars import *
-from network import Network
 
 
 class PCEvents(PCControls):
@@ -52,12 +51,8 @@ class PCEvents(PCControls):
                         get_sock().send(bytes(self.final_string, 'UTF-8'))
 
             if (get_clikd_btn() == 'cam' and not get_sock()):
-                set_sock(netw.connect_to_server(screen))
+                set_sock(netw.connect_to_server())
                 set_clikd_btn(None)
-
-
             if (get_clikd_btn() == 'disconnect' and get_sock()):
                 set_sock(netw.disconnect_from_server())
                 set_clikd_btn(None)
-                 
-#    if value in range(0, 180):
