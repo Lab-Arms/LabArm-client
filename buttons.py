@@ -32,3 +32,24 @@ class Buttons():
             rectangle = self.btn_dict[get_clikd_btn()]
             screen.fill(GRAY, rectangle)
             pygame.draw.rect(screen, BLACK, rectangle, 3)
+
+    def get_button1(self):
+        return self.motor1
+
+    def get_button2(self):
+        return self.motor2
+
+    def get_button3(self):
+        return self.motor3
+
+    def get_button4(self):
+        return self.motor4
+
+    def get_button5(self):
+        return self.abrir
+
+    def get_button6(self):
+        return self.fechar
+    
+    def get_disconect(self):
+        return self.disconect
