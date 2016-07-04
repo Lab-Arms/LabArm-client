@@ -1,4 +1,5 @@
 import socket
+import pickle
 import threading
 import numpy
 import sys
@@ -39,22 +40,21 @@ def receivepic(name, abc):
     tcp_sock = socket.socket()
     tcp_sock.bind(address)
     tcp_sock.listen(5)
-    print("CAMERA PRONTA PRA ENVIO...\n")
-    while True:
-        conn, addr = tcp_sock.accept()
-        print("RASP CONECTADA...\n")
-        while conn:
-            size = conn.recv(1024)
-            size = int(size.decode('UTF-8'))
-            temp = ''
-            conn.send(bytes('ok', 'UTF-8'))
-            while sys.getsizeof(temp) <= size:
-                data = conn.recv(46080)
-                temp += str(data)
-
-            frame = numpy.fromstring(temp, dtype=numpy.uint8)
-            frame = frame.reshape(640, 480, 3)
-            surface = pygame.surfarray.make_surface(frame)
-            set_camera_surface(surface)
+    print("Camera pronta pra envio...")
+    conn, addr = tcp_sock.accept()
+    print("Raspberry conectada...")
+    while conn and get_sock():
+        chunk = bytes()
+        conn.send(bytes('ready', 'UTF-8'))
+        size = conn.recv(1024)
+        size = int(size.decode('UTF-8'))
+        conn.send(bytes(str(size), 'UTF-8'))
+        while sys.getsizeof(chunk) < size:
+            chunk += conn.recv(46080)
+        frame = pickle.loads(chunk)
+        frame = numpy.rot90(frame, 1)
+        surface = pygame.surfarray.make_surface(frame)
+        set_camera_surface(surface)
     conn.close()
     tcp_sock.close()
+    print('Raspberry desconectada!')

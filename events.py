@@ -40,7 +40,6 @@ class PCEvents(PCControls):
                 if event.key == K_ESCAPE:
                     if self.changed_value and get_sock():
                         self.final_string = ''
-                        # TODO: Mudar evento para mouse click
                         ordered = collections.OrderedDict(
                             sorted(self.angle_dict.items())
                         )
