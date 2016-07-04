@@ -16,7 +16,7 @@ class PCEvents(PCControls):
         self.final_string = ''
         self.changed_value = False
 
-    def handle(self, netw):
+    def handle(self, screen, netw):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 if get_sock():
@@ -40,7 +40,6 @@ class PCEvents(PCControls):
                 if event.key == K_ESCAPE:
                     if self.changed_value and get_sock():
                         self.final_string = ''
-                        # TODO: Mudar evento para mouse click
                         ordered = collections.OrderedDict(
                             sorted(self.angle_dict.items())
                         )
@@ -53,10 +52,6 @@ class PCEvents(PCControls):
             if (get_clikd_btn() == 'cam' and not get_sock()):
                 set_sock(netw.connect_to_server())
                 set_clikd_btn(None)
-
-
             if (get_clikd_btn() == 'disconnect' and get_sock()):
                 set_sock(netw.disconnect_from_server())
                 set_clikd_btn(None)
-                 
-#    if value in range(0, 180):
