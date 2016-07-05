@@ -19,7 +19,7 @@ class Canvas():
             for k, v in self.imgsdis.items():
                 surface, rectangle = v
                 screen.blit(surface, rectangle)
-                get_clikd_btn() == "disconnect"
+                get_clikd_btn() == "dc"
 
     def get_cam_rect(self):
         return self.cam_rect
