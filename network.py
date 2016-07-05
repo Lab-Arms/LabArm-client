@@ -39,6 +39,7 @@ def receivepic(name, abc):
     address = host, port = "127.0.0.1", 4005
     tcp_sock = socket.socket()
     tcp_sock.bind(address)
+    tcp_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     tcp_sock.listen(5)
     print("Camera pronta pra envio...")
     conn, addr = tcp_sock.accept()
@@ -56,5 +57,6 @@ def receivepic(name, abc):
         surface = pygame.surfarray.make_surface(frame)
         set_camera_surface(surface)
     conn.close()
+    tcp_sock.shutdown(1)
     tcp_sock.close()
     print('Raspberry desconectada!')

@@ -7,11 +7,15 @@ import cv2
 import sys
 from pygame.locals import *
 
-cap = cv2.VideoCapture(0)
-cap.set(3, 640)
-cap.set(4, 480)
-color = False
+global g_sock
 
+def get_sock():
+    global g_sock
+    return g_sock
+
+def set_sock(sock):
+    global g_sock
+    g_sock = sock
 
 def chunks(data, size):
     for i in range(0, len(data), size):
@@ -19,13 +23,16 @@ def chunks(data, size):
 
 
 def sendpic(name, abc):
+    cap = cv2.VideoCapture(0)
+    cap.set(3, 640)
+    cap.set(4, 480)
     address = host, port = "127.0.0.1", 4005
-    time.sleep(1)
+    time.sleep(1)  
     try:
         tcp_sock = socket.create_connection(address, timeout=10)
         tcp_sock.settimeout(None)
         # TODO: Finalizar thread e liberar porta quando o cliente desconectar
-        while True:
+        while get_sock():
             ret, frame = cap.read()
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             fr = pickle.dumps(frame)
@@ -40,6 +47,7 @@ def sendpic(name, abc):
         tcp_sock = -1
     tcp_sock.close()
     cap.release()
+    print('Done')
 
 
 def main():
@@ -53,6 +61,7 @@ def main():
     print("Server started...")
     while True:
         conn, addr = sock.accept()
+        set_sock(conn)
         t = threading.Thread(
             target=sendpic, args=('SendPicture', 'abc'))
         t.start()
@@ -66,7 +75,9 @@ def main():
             if not userresponse:
                 break
         print("Client desconnected.")
+        set_sock(None)
 
+       
 
 if __name__ == '__main__':
     main()
