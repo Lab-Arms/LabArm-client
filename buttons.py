@@ -6,13 +6,13 @@ from globalvars import *
 class Buttons():
     def __init__(self):
         self.btn_dict = {}
-        self.motor1 = pygame.Rect(MOTOR1_POS, BUTTON_SIZE)
+        self.motor1 = pygame.Rect(BUTTON0_POS, BUTTON_SIZE)
         self.btn_dict['a'] = self.motor1
-        self.motor2 = pygame.Rect(MOTOR2_POS, BUTTON_SIZE)
+        self.motor2 = pygame.Rect(BUTTON1_POS, BUTTON_SIZE)
         self.btn_dict['b'] = self.motor2
-        self.motor3 = pygame.Rect(MOTOR3_POS, BUTTON_SIZE)
+        self.motor3 = pygame.Rect(BUTTON2_POS, BUTTON_SIZE)
         self.btn_dict['c'] = self.motor3
-        self.motor4 = pygame.Rect(MOTOR4_POS, BUTTON_SIZE)
+        self.motor4 = pygame.Rect(BUTTON3_POS, BUTTON_SIZE)
         self.btn_dict['d'] = self.motor4
         self.abrir = pygame.Rect(ABRIR_POS, BUTTON_SIZE)
         self.btn_dict['ea'] = self.abrir

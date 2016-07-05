@@ -14,23 +14,23 @@ class PCControls(Controls):
         x, y = pos
 
         if (
-            x > MOTOR1_X and x < MOTOR1_X + BUTTON_WIDTH and
-            y > MOTOR1_Y and y < MOTOR1_Y + BUTTON_HEIGHT
+            x > BUTTON0_X and x < BUTTON0_X + BUTTON_WIDTH and
+            y > BUTTON0_Y and y < BUTTON0_Y + BUTTON_HEIGHT
         ):
             return "a"
         elif (
-            x > MOTOR2_X and x < MOTOR2_X + BUTTON_WIDTH and
-            y > MOTOR2_Y and y < MOTOR2_Y + BUTTON_HEIGHT
+            x > BUTTON1_X and x < BUTTON1_X + BUTTON_WIDTH and
+            y > BUTTON1_Y and y < BUTTON1_Y + BUTTON_HEIGHT
         ):
             return "b"
         elif (
-            x > MOTOR3_X and x < MOTOR3_X + BUTTON_WIDTH and
-            y > MOTOR3_Y and y < MOTOR3_Y + BUTTON_HEIGHT
+            x > BUTTON2_X and x < BUTTON2_X + BUTTON_WIDTH and
+            y > BUTTON2_Y and y < BUTTON2_Y + BUTTON_HEIGHT
         ):
             return "c"
         elif (
-            x > MOTOR4_X and x < MOTOR4_X + BUTTON_WIDTH and
-            y > MOTOR4_Y and y < MOTOR4_Y + BUTTON_HEIGHT
+            x > BUTTON3_X and x < BUTTON3_X + BUTTON_WIDTH and
+            y > BUTTON3_Y and y < BUTTON3_Y + BUTTON_HEIGHT
         ):
             return "d"
         elif (
