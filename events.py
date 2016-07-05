@@ -19,20 +19,22 @@ class PCEvents(PCControls):
     def handle(self, screen, netw):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                if get_sock():
-                    get_sock().close()
-                sys.exit()
+                self.exit(netw)
 
             if not get_clikd_btn() and event.type == MOUSEBUTTONDOWN:
                 set_clikd_btn(self.ctrls.button_clicked(event.pos))
 
             if event.type == KEYDOWN:
+                if event.key == pygame.K_c and \
+                        pygame.key.get_mods() & pygame.KMOD_CTRL:
+                    self.exit(netw)
                 if event.key in range(K_0, K_9 + 1):
                     if len(self.angle_value) < 3:
                         self.changed_value = True
                         self.angle_value += str(event.key - K_0)
                     else:
-                        print("valor para ângulo maior que 3, informe valor menor que 3")
+                        print('valor para ângulo maior que 3,' +
+                              ' informe valor menor que 3')
                 if get_clikd_btn() and event.key == K_RETURN:
                     self.angle_dict[get_clikd_btn()] = self.angle_value
                     self.angle_value = ''
@@ -52,6 +54,11 @@ class PCEvents(PCControls):
             if (get_clikd_btn() == 'cam' and not get_sock()):
                 set_sock(netw.connect_to_server())
                 set_clikd_btn(None)
-            if (get_clikd_btn() == 'disconnect' and get_sock()):
+            if (get_clikd_btn() == 'dc' and get_sock()):
                 set_sock(netw.disconnect_from_server())
                 set_clikd_btn(None)
+
+    def exit(self, netw):
+        if get_sock():
+            get_sock().close()
+        sys.exit()
