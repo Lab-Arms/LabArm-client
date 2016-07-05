@@ -6,14 +6,14 @@ from globalvars import *
 class Buttons():
     def __init__(self):
         self.btn_dict = {}
-        self.motor1 = pygame.Rect(BUTTON0_POS, BUTTON_SIZE)
-        self.btn_dict['a'] = self.motor1
-        self.motor2 = pygame.Rect(BUTTON1_POS, BUTTON_SIZE)
-        self.btn_dict['b'] = self.motor2
-        self.motor3 = pygame.Rect(BUTTON2_POS, BUTTON_SIZE)
-        self.btn_dict['c'] = self.motor3
-        self.motor4 = pygame.Rect(BUTTON3_POS, BUTTON_SIZE)
-        self.btn_dict['d'] = self.motor4
+        self.btn0 = pygame.Rect(BUTTON0_POS, BUTTON_SIZE)
+        self.btn_dict['a'] = self.btn0
+        self.btn1 = pygame.Rect(BUTTON1_POS, BUTTON_SIZE)
+        self.btn_dict['b'] = self.btn1
+        self.btn2 = pygame.Rect(BUTTON2_POS, BUTTON_SIZE)
+        self.btn_dict['c'] = self.btn2
+        self.btn3 = pygame.Rect(BUTTON3_POS, BUTTON_SIZE)
+        self.btn_dict['d'] = self.btn3
         self.abrir = pygame.Rect(ABRIR_POS, BUTTON_SIZE)
         self.btn_dict['ea'] = self.abrir
         self.fechar = pygame.Rect(FECHAR_POS, BUTTON_SIZE)
@@ -33,22 +33,22 @@ class Buttons():
             screen.fill(GRAY, rectangle)
             pygame.draw.rect(screen, BLACK, rectangle, 3)
 
+    def get_button0(self):
+        return self.btn0
+
     def get_button1(self):
-        return self.motor1
+        return self.btn1
 
     def get_button2(self):
-        return self.motor2
+        return self.btn2
 
     def get_button3(self):
-        return self.motor3
+        return self.btn3
 
     def get_button4(self):
-        return self.motor4
-
-    def get_button5(self):
         return self.abrir
 
-    def get_button6(self):
+    def get_button5(self):
         return self.fechar
     
     def get_disconect(self):
