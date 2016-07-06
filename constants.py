@@ -1,4 +1,4 @@
-ESTADO_MOTORES = ('a', 'b', 'c', 'd', 'ea', 'ef', 'dc')
+ESTADO_MOTORES = ('a', 'b', 'c', 'd', 'ea', 'ef')
 
 RANGE_NUMERIC_KEY = (48, 57)
 SCREEN_X = (888)

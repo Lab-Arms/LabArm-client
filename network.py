@@ -5,8 +5,8 @@ import numpy
 import sys
 from globalvars import *
 from pygame.locals import *
-from constants import CAMERA_POS
-from globalvars import get_camera_surface, set_camera_surface, get_sock
+from constants import CAMERA_POS, WHITE
+from globalvars import get_camera_surface, set_camera_surface, get_sock, empty_camera_surface
 
 
 class Network():
@@ -59,4 +59,5 @@ def receivepic(name, abc):
     conn.close()
     tcp_sock.shutdown(1)
     tcp_sock.close()
+    empty_camera_surface()
     print('Raspberry desconectada!')
