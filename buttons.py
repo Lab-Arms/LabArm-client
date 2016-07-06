@@ -15,9 +15,9 @@ class Buttons():
         self.btn3 = pygame.Rect(BUTTON3_POS, BUTTON_SIZE)
         self.btn_dict['d'] = self.btn3
         self.abrir = pygame.Rect(ABRIR_POS, BUTTON_SIZE)
-        self.btn_dict['ea'] = self.abrir
+        self.btn_dict['e'] = self.abrir
         self.fechar = pygame.Rect(FECHAR_POS, BUTTON_SIZE)
-        self.btn_dict['ef'] = self.fechar
+        self.btn_dict['f'] = self.fechar
         self.disconect = pygame.Rect(DISC_CONN_POS, DISC_CONN_SIZE)
         self.btn_dict['dc'] = self.disconect
 
@@ -50,6 +50,6 @@ class Buttons():
 
     def get_button5(self):
         return self.fechar
-    
+
     def get_disconect(self):
         return self.disconect

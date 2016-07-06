@@ -37,12 +37,12 @@ class PCControls(Controls):
             x > ABRIR_X and x < ABRIR_X + BUTTON_WIDTH and
             y > ABRIR_Y and y < ABRIR_Y + BUTTON_HEIGHT
         ):
-            return "ea"
+            return "e"
         elif (
             x > FECHAR_X and x < FECHAR_X + BUTTON_WIDTH and
             y > FECHAR_Y and y < FECHAR_Y + BUTTON_HEIGHT
         ):
-            return "ef"
+            return "f"
 
         elif (
             x > CAMERA_X and x < CAMERA_X + CAMERA_WIDTH and

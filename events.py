@@ -1,10 +1,8 @@
 import sys
-import collections
 import pygame
 from pygame.locals import *
 from controls import PCControls
 from globalvars import *
-from constants import ESTADO_MOTORES
 
 
 class PCEvents(PCControls):
@@ -18,10 +16,6 @@ class PCEvents(PCControls):
 
             if not get_clikd_btn() and event.type == MOUSEBUTTONDOWN:
                 set_clikd_btn(self.ctrls.button_clicked(event.pos))
-
-            if get_clikd_btn() in ESTADO_MOTORES and get_sock():
-                get_sock().send(bytes(get_clikd_btn(), 'UTF-8'))
-                set_clikd_btn(None)
 
             if event.type == KEYDOWN:
                 if event.key == pygame.K_c and \

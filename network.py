@@ -5,8 +5,10 @@ import numpy
 import sys
 from globalvars import *
 from pygame.locals import *
-from constants import CAMERA_POS, WHITE
-from globalvars import get_camera_surface, set_camera_surface, get_sock, empty_camera_surface
+from constants import CAMERA_POS, ESTADO_MOTORES, DICT_MOVEMENTS
+from globalvars import (
+    get_camera_surface, set_camera_surface, get_sock, empty_camera_surface,
+    get_clikd_btn, set_clikd_btn)
 
 
 class Network():
@@ -18,9 +20,12 @@ class Network():
         try:
             sock = socket.create_connection(self.address, timeout=10)
             sock.settimeout(None)
-            t = threading.Thread(
+            tcamera = threading.Thread(
                 target=receivepic, args=('ReceivePicture', 'abc'))
-            t.start()
+            tcamera.start()
+            tcinv = threading.Thread(
+                target=sendpos, args=('SendPosition', 'abc'))
+            tcinv.start()
         except ConnectionRefusedError:
             sock = -1
         return sock
@@ -61,3 +66,20 @@ def receivepic(name, abc):
     tcp_sock.close()
     empty_camera_surface()
     print('Raspberry desconectada!')
+
+
+def sendpos(name, abc):
+    address = host, port = "127.0.0.1", 4006
+    print("Entrou na thread...")
+    try:
+        tcp_sock = socket.socket()
+        tcp_sock = socket.create_connection(address, timeout=10)
+        tcp_sock.settimeout(None)
+    except ConnectionRefusedError:
+        tcp_sock = -1
+    while get_sock():
+        if get_clikd_btn() in ESTADO_MOTORES:
+            movement = DICT_MOVEMENTS[get_clikd_btn()]
+            tcp_sock.send(bytes(movement, 'UTF-8'))
+            set_clikd_btn(None)
+    tcp_sock.close()

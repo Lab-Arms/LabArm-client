@@ -1,4 +1,13 @@
-ESTADO_MOTORES = ('a', 'b', 'c', 'd', 'ea', 'ef')
+ESTADO_MOTORES = ('a', 'b', 'c', 'd', 'e', 'f')
+
+DICT_MOVEMENTS = {
+    'a': 'B',
+    'b': 'A 1.0 1.0 1.0',
+    'c': 'A 2.0 2.0 2.0',
+    'd': 'A 3.0 3.0 3.0',
+    'e': 'A 4.0 4.0 4.0',
+    'f': 'A 5.0 5.0 5.0',
+}
 
 RANGE_NUMERIC_KEY = (48, 57)
 SCREEN_X = (888)

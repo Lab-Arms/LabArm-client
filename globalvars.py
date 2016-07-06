@@ -20,9 +20,11 @@ def get_sock():
     global g_sock
     return g_sock
 
+
 def get_con():
     global g_con
     return g_con
+
 
 def get_camera_surface():
     global g_camsurface
@@ -38,13 +40,16 @@ def set_sock(sock):
     global g_sock
     g_sock = sock
 
+
 def set_con(con):
     global g_con
     g_con = con
 
+
 def set_camera_surface(surface):
     global g_camsurface
     g_camsurface = surface
+
 
 def empty_camera_surface():
     s = pygame.Surface(CAMERA_SIZE)

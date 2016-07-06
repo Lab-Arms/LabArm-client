@@ -9,13 +9,16 @@ from pygame.locals import *
 
 global g_sock
 
+
 def get_sock():
     global g_sock
     return g_sock
 
+
 def set_sock(sock):
     global g_sock
     g_sock = sock
+
 
 def chunks(data, size):
     for i in range(0, len(data), size):
@@ -27,7 +30,7 @@ def sendpic(name, abc):
     cap.set(3, 640)
     cap.set(4, 480)
     address = host, port = "127.0.0.1", 4005
-    time.sleep(1)  
+    time.sleep(1)
     try:
         tcp_sock = socket.create_connection(address, timeout=10)
         tcp_sock.settimeout(None)
@@ -40,7 +43,7 @@ def sendpic(name, abc):
             msg = tcp_sock.recv(1024)
             if msg.decode('UTF-8') == 'ready':
                 if tcp_sock.send(bytes(str(sys.getsizeof(fr)), 'UTF-8')):
-                    confirm = tcp_sock.recv(1024)
+                    tcp_sock.recv(1024)
                     for n in list_chunks:
                         tcp_sock.send(n)
     except ConnectionRefusedError:
@@ -77,7 +80,6 @@ def main():
         print("Client desconnected.")
         set_sock(None)
 
-       
 
 if __name__ == '__main__':
     main()
