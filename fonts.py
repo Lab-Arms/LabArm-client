@@ -88,13 +88,5 @@ class Fonts(Canvas):
             self.button5, (
                 self.fechar.centerx - self.button5.get_width() / 2,
                 self.fechar.centery - self.button5.get_height() / 2
-                )
-                self.abrir.centerx - self.button5.get_width() / 2,
-                self.abrir.centery - self.button5.get_height() / 2
-            )
-        screen.blit(
-            self.button6, (
-                self.fechar.centerx - self.button6.get_width() / 2,
-                self.fechar.centery - self.button6.get_height() / 2
             )
         )
