@@ -17,19 +17,19 @@ class Fonts(Canvas):
         self.abrir = btn.get_button4()
         self.fechar = btn.get_button5()
         self.disc = btn.get_disconect()
-        self.font = pygame.font.SysFont("timesnewroman", 54)
+        self.font = pygame.font.SysFont("timesnewroman", 18)
         self.disc_text = self.font.render(
             "Desconectado do servidor.", True, BLACK)
         self.conn_text = self.font.render(
             "Deseja conectar?", True, BLACK)
         self.disconnect_text = self.font.render(
             "Desconectar", True, BLACK)
-        self.button0 = self.font.render("Pos ini", True, BLACK)
-        self.button1 = self.font.render("Pegar elerm", True, BLACK)
-        self.button2 = self.font.render("Pos manta", True, BLACK)
-        self.button3 = self.font.render("Add Beck AC", True, BLACK)
-        self.button4 = self.font.render("Add Beck AO", True, BLACK)
-        self.button5 = self.font.render("Lig mufl", True, BLACK)
+        self.button0 = self.font.render("Pos Inicial", True, BLACK)
+        self.button1 = self.font.render("Tubo Ensaio", True, BLACK)
+        self.button2 = self.font.render("Becker AO", True, BLACK)
+        self.button3 = self.font.render("Becker AC", True, BLACK)
+        self.button4 = self.font.render("Elem Gelo", True, BLACK)
+        self.button5 = self.font.render("Filtro", True, BLACK)
 
     def draw(self, screen):
         if not get_possock() or get_possock() == -1:
