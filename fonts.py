@@ -22,7 +22,6 @@ class Fonts(Canvas):
             "Desconectado do servidor.", True, BLACK)
         self.conn_text = self.font.render(
             "Deseja conectar?", True, BLACK)
-        #self.succ_text = self.font.render("Conectado!", True, BLACK)
         self.disconnect_text = self.font.render(
             "Desconectar", True, BLACK)
         self.button0 = self.font.render("Pos ini", True, BLACK)
@@ -33,7 +32,7 @@ class Fonts(Canvas):
         self.button5 = self.font.render("Lig mufl", True, BLACK)
 
     def draw(self, screen):
-        if not get_sock() or get_sock() == -1:
+        if not get_possock() or get_possock() == -1:
             screen.blit(
                 self.disc_text, (
                     self.cam.centerx - self.disc_text.get_width() / 2,
@@ -90,7 +89,12 @@ class Fonts(Canvas):
                 self.fechar.centerx - self.button5.get_width() / 2,
                 self.fechar.centery - self.button5.get_height() / 2
                 )
+                self.abrir.centerx - self.button5.get_width() / 2,
+                self.abrir.centery - self.button5.get_height() / 2
             )
-        
-           
-   
+        screen.blit(
+            self.button6, (
+                self.fechar.centerx - self.button6.get_width() / 2,
+                self.fechar.centery - self.button6.get_height() / 2
+            )
+        )

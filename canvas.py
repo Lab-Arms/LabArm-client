@@ -15,7 +15,7 @@ class Canvas():
             surface, rectangle = v
             screen.blit(surface, rectangle)
             pygame.draw.rect(screen, BLACK, self.cam_rect, 3)
-        if get_sock():
+        if get_possock() or get_camsock():
             for k, v in self.imgsdis.items():
                 surface, rectangle = v
                 screen.blit(surface, rectangle)
