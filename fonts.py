@@ -25,12 +25,12 @@ class Fonts(Canvas):
         #self.succ_text = self.font.render("Conectado!", True, BLACK)
         self.disconnect_text = self.font.render(
             "Desconectar", True, BLACK)
-        self.button0 = self.font.render("0", True, BLACK)
-        self.button1 = self.font.render("1", True, BLACK)
-        self.button2 = self.font.render("2", True, BLACK)
-        self.button3 = self.font.render("3", True, BLACK)
-        self.button4 = self.font.render("4", True, BLACK)
-        self.button5 = self.font.render("5", True, BLACK)
+        self.button0 = self.font.render("Pos ini", True, BLACK)
+        self.button1 = self.font.render("Pegar elerm", True, BLACK)
+        self.button2 = self.font.render("Pos manta", True, BLACK)
+        self.button3 = self.font.render("Add Beck AC", True, BLACK)
+        self.button4 = self.font.render("Add Beck AO", True, BLACK)
+        self.button5 = self.font.render("Lig mufl", True, BLACK)
 
     def draw(self, screen):
         if not get_sock() or get_sock() == -1:

@@ -45,3 +45,7 @@ def set_con(con):
 def set_camera_surface(surface):
     global g_camsurface
     g_camsurface = surface
+
+def empty_camera_surface():
+    s = pygame.Surface(CAMERA_SIZE)
+    set_camera_surface(s)
